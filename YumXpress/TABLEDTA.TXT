@@ -1,0 +1,92 @@
+
+COMPANIES TABLE ELEMENT
+========================
+SQL> DESC COMPANIES;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------
+ COMPANY_ID                                NOT NULL VARCHAR2(10)
+ COMPANY_NAME                                       VARCHAR2(100)
+ OWNER_NAME                                         VARCHAR2(50)
+ PASSWORD                                           VARCHAR2(20)
+ STATUS                                             VARCHAR2(50)
+ EMAIL_ID                                           VARCHAR2(100)
+ SECURITY_KEY                                       VARCHAR2(100)
+
+==================================================
+CUSTOMERS TABLE ELEMENT
+=========================
+SQL> DESC CUSTOMERS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------
+ CUSTOMER_ID                                NOT NULL VARCHAR2(10)
+ CUSTOMER_NAME                                       VARCHAR2(100)
+ EMAIL_ID                                           VARCHAR2(100)
+ PASSWORD                                           VARCHAR2(20)
+ MOBILE_NO                                         VARCHAR2(10)
+ ADDRESS                                      VARCHAR2(150)
+
+======================================================
+ORDERS TABLE ELEMENT
+=====================
+SQL> DESC ORDERS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------
+ ORDER_ID                                NOT NULL   VARCHAR2(10)
+ PRODUCT_ID                                         VARCHAR2(10)
+ CUSTOMER_ID                                        VARCHAR2(10)
+ STAFF_ID                                           VARCHAR2(10)
+ REVIEW                                             VARCHAR2(200)
+ STATUS                                             VARCHAR2(50)
+ COMPANY_ID                                        VARCHAR2(20)
+ OTP                                                NUMBER(10)
+=======================================================
+PRODUCTS TABLE ELEMENT
+========================
+SQL> DESC PRODUCTS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------
+ PRODUCT_ID                                NOT NULL VARCHAR2(10)
+ COMPANY_ID                                         VARCHAR2(10)
+ PRODUCT_NAME                                       VARCHAR2(50)
+ PRODUCT_PRICE                                      NUMBER(7,2)
+ PRODUCT_IMAGE                                      BLOB
+==========================================================
+STAFFS TABLE ELEMENT
+====================
+SQL> DESC STAFF;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------
+  STAFF_ID                                NOT NULL  VARCHAR2(10)
+  COMPANY_ID                                        VARCHAR2(30)
+  EMAIL_ID                                NOT NULL  VARCHAR2(30)
+  PASSWORD                                NOT NULL  VARCHAR2(30)
+  STAFF_NAME                                        VARCHAR2(50)
+============================================================================
+
+Query = SELECT p.product_name, c.customer_name,s.staff_name,o.status 
+                FROM orders o 
+                JOIN products p ON o.product_id = p.product_id 
+                JOIN customers c ON o.customer_id = c.customer_id 
+                JOIN staff s ON o.staff_id = s.staff_id
+                JOIN companies co ON o.company_id = co.company_id 
+                WHERE co.company_id ='COM-101'
+                ORDER BY o.order_id DESC;
+
+String qry = SELECT o.order_id, p.product_name, p.product_price, s.staff_name, c.address
+                FROM orders o 
+                JOIN products p ON o.product_id = p.product_id 
+                JOIN customers c ON o.customer_id = c.customer_id 
+                JOIN staff s ON o.staff_id = s.staff_id 
+                WHERE o.customer_id = 'CUS-101';
+
+String qry = SELECT p.product_name, p.product_name, c.customer_name, s.staff_name,o.status 
+                FROM orders o 
+                JOIN products p ON o.product_id = p.product_id 
+                JOIN customers c ON o.customer_id = c.customer_id 
+                JOIN staff s ON o.staff_id = s.staff_id
+                WHERE o.company_id = 'COM-101'  ;
+
+SELECT product_name, product_price
+                FROM products  
+                WHERE product_id ='CUS-101' 
+                ORDER BY product_id DESC ;

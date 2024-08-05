@@ -1,5 +1,5 @@
  ## This is an Ecommerce-Website (YumXpress)
-- This is java desktop application Used only java based logic
+- This is java desktop application Using Java SE, JFrame,JDBC logic.
 # It's Features are:
 -Shop owner can register our shop on this app
 -shop owner can access the appln using their id ans password,
